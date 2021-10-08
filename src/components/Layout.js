@@ -5,22 +5,28 @@ import { AddCircleOutlined, AddCircleOutlineOutlined, SubjectOutlined } from '@m
 import { useHistory, useLocation } from 'react-router';
 
 const drawerWidth = 240; 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex'
-    },
-    page: {
-        backgroundColor: '#ffffff',
-        width: '100%'
-    },
-    drawer: {
-        width: drawerWidth
-    },
-    drawerPaper: {
-        width: drawerWidth
-    },
-    active: {
-        backgroundColor: "#f4f4f4"
+const useStyles = makeStyles((theme) => {
+    return {
+        root: {
+            display: 'flex'
+        },
+        page: {
+            backgroundColor: '#ffffff',
+            width: '100%',
+            padding: theme.spacing(3)
+        },
+        drawer: {
+            width: drawerWidth
+        },
+        drawerPaper: {
+            width: drawerWidth
+        },
+        active: {
+            backgroundColor: "#f4f4f4"
+        },
+        title: {
+            padding: theme.spacing(2)
+        }
     }
 })
 const Layout = ({children}) => {
@@ -44,7 +50,7 @@ const Layout = ({children}) => {
             classes={{paper: classes.drawerPaper}}
             >
                 <div>
-                    <Typography variant='h5'>
+                    <Typography variant='h5' className={classes.title}>
                         robot notes
                     </Typography>
                 </div>
