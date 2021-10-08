@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
-import { Drawer, Typography } from '@material-ui/core'
+import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { AddCircleOutlined, AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons';
+import { useHistory, useLocation } from 'react-router';
 
 const drawerWidth = 240; 
 const useStyles = makeStyles({
@@ -8,7 +10,7 @@ const useStyles = makeStyles({
         display: 'flex'
     },
     page: {
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#ffffff',
         width: '100%'
     },
     drawer: {
@@ -16,10 +18,20 @@ const useStyles = makeStyles({
     },
     drawerPaper: {
         width: drawerWidth
+    },
+    active: {
+        backgroundColor: "#f4f4f4"
     }
 })
 const Layout = ({children}) => {
     const classes = useStyles()
+    const history = useHistory()
+    const location = useLocation()
+
+    const menuItems = [
+    {text: 'My notes', icon: <SubjectOutlined color="secondary"/>, path: "/"},
+    {text: 'Create notes', icon: <AddCircleOutlineOutlined color="secondary"/>, path: "/create"},
+]
     return (
         <div className={classes.root}>
             {/* app bar */}
@@ -36,6 +48,20 @@ const Layout = ({children}) => {
                         robot notes
                     </Typography>
                 </div>
+
+                {/* List / Links  */}
+                <List>
+                    {menuItems.map(item => {
+                        return (
+                        <ListItem key={item.text} button
+                            onClick={() => history.push(item.path)}
+                            className={location.pathname === item.path ? classes.active : null}
+                        >
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.text}/>
+                        </ListItem>)
+                    })}
+                </List>
             </Drawer>
 
             <div className={classes.page}>
