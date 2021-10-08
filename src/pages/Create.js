@@ -4,17 +4,7 @@ import {KeyboardArrowRight} from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
-  btn: {
-    fontSize: '60px',
-    backgroundColor: 'violet',
-    '&:hover': {
-      backgroundColor: 'blue'
-    }
-  },
-  title: {
-    textDecoration: 'underline',
-    marginBottom: '20px'
-  }
+ 
 })
 
 export default function Create() {
@@ -23,12 +13,11 @@ export default function Create() {
 
   return (
     <Container>
-     <Typography className={classes.title} variant="h6" component="h2" color="textSecondary" gutterBottom>
+     <Typography variant="h6" component="h2" color="textSecondary" gutterBottom>
        Create a New Note
      </Typography>
 
      <Button type="submit"
-     className={classes.btn}
      color="secondary"
      variant="contained"
      endIcon={<KeyboardArrowRight/>}
