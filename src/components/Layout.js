@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
-import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText, AppBar, Toolbar} from '@material-ui/core'
+import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText, AppBar, Toolbar, Avatar} from '@material-ui/core'
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons';
 import { useHistory, useLocation } from 'react-router';
 import {format} from 'date-fns'
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => {
         toolbar: theme.mixins.toolbar,
         date: {
             flexGrow: 1
+        },
+        avatar:{
+            marginLeft: theme.spacing(2)
         }
     }
 })
@@ -57,8 +60,9 @@ const Layout = ({children}) => {
                        Today is {format(new Date(), 'do MMMM Y')}
                     </Typography>
                     <Typography>
-                        Robot
+                        robot
                     </Typography>
+                    <Avatar className={classes.avatar} src="./robot.png"/>
                 </Toolbar>
             </AppBar>
             {/* side drawer */}

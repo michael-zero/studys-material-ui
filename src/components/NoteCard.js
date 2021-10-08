@@ -1,14 +1,28 @@
 import React from 'react'
-import {Card, CardMedia, CardHeader, CardContent, IconButton, Typography, makeStyles} from '@material-ui/core'
+import {Card, CardMedia, CardHeader, CardContent, IconButton, Typography, makeStyles, Avatar} from '@material-ui/core'
 import {DeleteOutlined} from '@material-ui/icons'
+import { blue, green, pink, yellow } from '@material-ui/core/colors'
 
 const useStyles = makeStyles({
-    test: {
-        border: (note) => {
+    avatar: {
+        backgroundColor: (note) => {
             if(note.category === 'work'){
-                return '1px solid red'
+               return yellow[700]
             }
+            if(note.category === 'money'){
+               return green[500]
+            }
+            if(note.category === 'todos'){
+               return pink[500]
+            }
+            
+            return blue[500]
         }
+        // border: (note) => {
+        //     if(note.category === 'work'){
+        //         return '1px solid red'
+        //     }
+        // }
     }
 })
 
@@ -17,7 +31,10 @@ const NoteCard = ({note, handleDelete}) => {
     return (
         <div>
            <Card elevation={1} className={classes.test}>
-            <CardHeader  
+            <CardHeader 
+            avatar={<Avatar className={classes.avatar}>
+                {note.category[0].toUpperCase()}
+            </Avatar>} 
             title={note.title}
             subheader={note.category}
             action={<IconButton onClick={() => handleDelete(note.id)}>
