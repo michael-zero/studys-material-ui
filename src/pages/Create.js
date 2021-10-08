@@ -1,6 +1,7 @@
 import React from 'react'
 import {Typography, Button, Container, makeStyles, TextField, RadioGroup, Radio, FormControlLabel, FormControl, FormLabel} from '@material-ui/core'
 import {KeyboardArrowRight} from '@material-ui/icons';
+import { useHistory } from 'react-router';
 
 
 const useStyles = makeStyles({
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
 export default function Create() {
   
   const classes = useStyles()
+  const history = useHistory()
   const [title, setTitle] = React.useState('')
   const [details, setDetails] = React.useState('')
   const [titleError, setTitleError] = React.useState(false)
@@ -40,7 +42,15 @@ export default function Create() {
     }
 
     if(title && details){
-      console.log(title, details)
+      // console.log(title, details)
+      fetch('http://localhost:8000/notes', { 
+        method: 'POST',
+        headers: {
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({title, details, category})
+    }).then(() => history.push('/') )
+
     }
   }
 
